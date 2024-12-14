@@ -1,0 +1,2932 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Implementasi K-Means dalam Pengelompokan Penyebaran Kemiskinan di Indonesia untuk Pengendalian dan Pemulihan Ekonomi di Daerah Jawa Timur &#8212; Proyek Sains Data (D)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'psd1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Prediksi Harga barang merah daerah sumenep" href="psd2.html" />
+    <link rel="prev" title="Wahyu Rohmatul Abidin" href="laporanPSD.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="laporanPSD.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Proyek Sains Data (D)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="laporanPSD.html">
+                    Wahyu Rohmatul Abidin
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Implementasi K-Means dalam Pengelompokan Penyebaran Kemiskinan di Indonesia untuk Pengendalian dan Pemulihan Ekonomi di Daerah Jawa Timur</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="psd2.html">Prediksi Harga barang merah daerah sumenep</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="psd3.html">Prediksi Multivariat Harga Komoditas dan Kurs Rupiah dengan LSTM untuk Stabilitas Ekonomi</a></li>
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpsd1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/psd1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Implementasi K-Means dalam Pengelompokan Penyebaran Kemiskinan di Indonesia untuk Pengendalian dan Pemulihan Ekonomi di Daerah Jawa Timur</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Implementasi K-Means dalam Pengelompokan Penyebaran Kemiskinan di Indonesia untuk Pengendalian dan Pemulihan Ekonomi di Daerah Jawa Timur</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bussiness-understanding">1. Bussiness Understanding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masalah">1.2 Masalah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.3 Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">1.4 Manfaat</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">2. EDA</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">2.1 Import Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2.2 Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-tiap-feature">2.3 penjelasan tiap feature</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indeks-kedalaman-kemiskinan-adalah-poverty-gap-index-p1">1.indeks kedalaman kemiskinan adalah (Poverty Gap Index/P1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indeks-keparahan-kemiskinan">2. indeks keparahan kemiskinan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presentase-penduduk-miskin">3.Presentase penduduk miskin</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-variabel">2.4 Korelasi antar variabel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">2.5. Visualisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-persebaran-nilai-p1">a. Persebaran nilai P1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-persebaran-nilai-p2">b. Persebaran Nilai p2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-persebaran-nilai-presentase-penduduk-miskin">c. Persebaran Nilai Presentase penduduk miskin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">3. Preprocessing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-standarisasi">3.1 Normalisasi/Standarisasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-clustering">4. Modelling/<strong>clustering</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-jumlah-kluster-optimal-dengan-elbow-method">4.1 Menentukan jumlah kluster optimal dengan elbow method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-dengan-kmeans-k-3">4.2 clustering dengan Kmeans (K=3)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nilai-akurasi">5. Nilai Akurasi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-cluster">6. Visualisasi cluster</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-hugging-face">8. Deployment hugging face</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="implementasi-k-means-dalam-pengelompokan-penyebaran-kemiskinan-di-indonesia-untuk-pengendalian-dan-pemulihan-ekonomi-di-daerah-jawa-timur">
+<h1>Implementasi K-Means dalam Pengelompokan Penyebaran Kemiskinan di Indonesia untuk Pengendalian dan Pemulihan Ekonomi di Daerah Jawa Timur<a class="headerlink" href="#implementasi-k-means-dalam-pengelompokan-penyebaran-kemiskinan-di-indonesia-untuk-pengendalian-dan-pemulihan-ekonomi-di-daerah-jawa-timur" title="Link to this heading">#</a></h1>
+<p>Oleh : <br>
+Nama : Wahyu Rohmatul Abidin<br>
+Nim  : 220411100198<br>
+Kelas: Proyek Sains Data (D) <br>
+projek 3</p>
+</section>
+<section id="bussiness-understanding">
+<h1>1. Bussiness Understanding<a class="headerlink" href="#bussiness-understanding" title="Link to this heading">#</a></h1>
+<section id="latar-belakang">
+<h2>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<p>Kemiskinan merupakan sebagai salah satu tantangan terbesar yang dihadapi oleh negara dalam pembangunan yang inklusif dan berkelanjutan. Pemerintah Jawa timur sudah banyak bekerja keras dan mengusahakan untuk tercapainya kehidupan masyarakat yang layak dengan menggunakan beberapa program seperti bantuan sosial dan program program lainnya. Tapi masih banyak kendala yang dihadapi seperti distribusi bantuan yang tidak tepat sasaran pada suatu daerah yang sering kali menjadi kendala yang menjadikan program mengurangi tingkat kemiskinan kurang efektif. Salah satu penyebab utamanya adalah kurangnya pemahaman yang mendalam mengenai distribusi kemiskinan di daerah terutama di kabupaten dan kota di masing masing kabupaten/kota di Jawa timur. <br></p>
+<p>Berdasarkan data dari tahun 2018 – 2024, terlihat bahwa setiap kabupaten atau kota dijawa timur memiliki tingkat kemiskinan yang berbeda beda. Namun, program bantuan dan pemulihan ekonomi cenderung bersifat umum tanpa memperhatikan karakteristik spesifik dari masing masing wilayah. Akibatnya, daerah- daerah yang seharusnya mendapatkan prioritas dalam program bantuan tidak memperoleh alokasi yang memadai, sementara daerah dengan tingkat kemiskinan yang lebih rendah bisa jadi menerima alokasi yang berlebih. <br></p>
+<p>Dengan masalah ini, pengelompokan daerah berdasarkan tingkat kemiskinan dapat menjadi alat yang efektif bagi pemerintah khususnya kementerian social Jawa Timur, dalam merancang dan menargetkan program program pemulihan ekonomi yang tepat sasaran. Dengan menggunakan Teknik clustering/ pengelompokan data dengan menggunakan algoritma K-Means dapat membantu dalam mengidentifikasi kelompok daerah dengan karakteristik kemiskinan yang serupa, yang memungkinkan pemerintah menganggarkan sumber daya yang lebih efisien dan efektif.</p>
+</section>
+<section id="masalah">
+<h2>1.2 Masalah<a class="headerlink" href="#masalah" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Bagaimana distribusi garis kemiskinan di kabupaten dan kota di jawa timut selama 2018 - 2024 ?
+<br></p></li>
+<li><p>Bagaimana cara melakukan pengelompokan daerah berdasarkan garis kemiskinan untuk memastikan program bantuan lebih tepat sasaran ?
+<br></p></li>
+<li><p>Bagaimana hasil pengelompokan ini dapat digunakan oleh pemerintah provinsi dalam perencanaan distribusi program bantuan sosial dan pemulihan ekonomi yang lebih efisien ?</p></li>
+</ol>
+</section>
+<section id="tujuan">
+<h2>1.3 Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Menganalisis garis kemiskinan per kapita per bulan di setiap kabupaten/ kota di jawa timur pada periode 2018 -  2024 <br></p></li>
+<li><p>Mengidentifikasi pola dan tren distribbusi kemiskinan di jawa timur menggunakan pengelompokan berbasis algoritma K-Means <br></p></li>
+<li><p>Menerapkan algoritma K-Means dalam mengelompokkan kota-kota di Jawa timur berdasarkan penyebaran kemiskinan dari tahun 2018 hingga 2024. Sehingga menghasilkan peta sebaran kemiskinan dalam tiap tiap cluster. Melalui pengelompokan ini, diharapkan Kementerian Sosial dapat:
+<br>
+a. Mengidentifikasi kluster kluster daerah dengan tingkat kemiskinan yang serupa. <br></p></li>
+</ol>
+<p>b. Merancang strategi pengendalian dan pemulihan ekonomi yang lebih tepat sasaran <br></p>
+<p>c. Mengalokasikan anggaran bantuan social (Bansos) sesuai dengan tingkat kemiskinan yang ada di setiap kluster, sehingga program yang dijalankan lebih efektif dalam menurunkan angka kemiskinan daerah daerah yang ada di jawa timur.</p>
+</section>
+<section id="manfaat">
+<h2>1.4 Manfaat<a class="headerlink" href="#manfaat" title="Link to this heading">#</a></h2>
+<p>Penelitian ini diharapkan dapat memberikan beberapa manfaat yang signifikan, antara lain : <br><br></p>
+<p>A. Bagi pemerintah ( Kementerian sosial )<br></p>
+<ol class="arabic simple">
+<li><p>Mempercepat pemulihan ekonomi di daerah-daerah dengan tingkat kemiskinan tinggi melalui program yang lebih terarah.<br></p></li>
+<li><p>Memperoleh alat bantu berbasis data untuk pengambilan keputusan dalam distribusi bantuan sosial yang lebih tepat sasaran<br></p></li>
+<li><p>Menyusun rencana dan strategi daerah mana yang memerlukan intervensi khusus dalam pengendalian dan pemulihan ekonomi serta strategi yang lebih tepat untuk setiap cluster.
+<br></p></li>
+<li><p>Rekomendasi kebijakan berbasis data untuk memastikan bahwa bantuan ekonomi dan sosial terfokus pada daerahdaerah yang paling membutuhkan perhatian khusus.</p></li>
+</ol>
+<p><br><br>
+Bagi Masyarakat</p>
+<ol class="arabic simple">
+<li><p>Meningkatkan kesejahteraan masyarakat melalui distribusi bantuan sosial dari pemerintah yang lebih merata dan tepat sasaran<br></p></li>
+<li><p>Meningkatkan pertumbuhan ekonomi yang merata di Indonesia, terutama pada daerah daerah yang paling terdampak oleh kemiskinan.</p></li>
+</ol>
+</section>
+</section>
+<section id="eda">
+<h1>2. EDA<a class="headerlink" href="#eda" title="Link to this heading">#</a></h1>
+<section id="import-library">
+<h2>2.1 Import Library<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>contextily
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting contextily
+  Obtaining dependency information for contextily from https://files.pythonhosted.org/packages/fb/46/07a029b73f9a5c7bbf9b538e6441c42014a448f335a1cc780616f2594bad/contextily-1.6.2-py3-none-any.whl.metadata
+  Using cached contextily-1.6.2-py3-none-any.whl.metadata (2.9 kB)
+Collecting geopy (from contextily)
+  Obtaining dependency information for geopy from https://files.pythonhosted.org/packages/e5/15/cf2a69ade4b194aa524ac75112d5caac37414b20a3a03e6865dfe0bd1539/geopy-2.4.1-py3-none-any.whl.metadata
+  Using cached geopy-2.4.1-py3-none-any.whl.metadata (6.8 kB)
+Requirement already satisfied: matplotlib in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from contextily) (3.9.2)
+Collecting mercantile (from contextily)
+  Obtaining dependency information for mercantile from https://files.pythonhosted.org/packages/b2/d6/de0cc74f8d36976aeca0dd2e9cbf711882ff8e177495115fd82459afdc4d/mercantile-1.2.1-py3-none-any.whl.metadata
+  Using cached mercantile-1.2.1-py3-none-any.whl.metadata (4.8 kB)
+Requirement already satisfied: pillow in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from contextily) (11.0.0)
+Collecting rasterio (from contextily)
+  Obtaining dependency information for rasterio from https://files.pythonhosted.org/packages/be/cc/453816b489af94b9a243eda889865973d518989ba6923b2381f6d6722b43/rasterio-1.4.3-cp312-cp312-win_amd64.whl.metadata
+  Using cached rasterio-1.4.3-cp312-cp312-win_amd64.whl.metadata (9.4 kB)
+Requirement already satisfied: requests in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from contextily) (2.32.3)
+Requirement already satisfied: joblib in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from contextily) (1.4.2)
+Collecting xyzservices (from contextily)
+  Obtaining dependency information for xyzservices from https://files.pythonhosted.org/packages/4c/d3/e07ce413d16ef64e885bea37551eac4c5ca3ddd440933f9c94594273d0d9/xyzservices-2024.9.0-py3-none-any.whl.metadata
+  Using cached xyzservices-2024.9.0-py3-none-any.whl.metadata (4.1 kB)
+Collecting geographiclib&lt;3,&gt;=1.52 (from geopy-&gt;contextily)
+  Obtaining dependency information for geographiclib&lt;3,&gt;=1.52 from https://files.pythonhosted.org/packages/9f/5a/a26132406f1f40cf51ea349a5f11b0a46cec02a2031ff82e391c2537247a/geographiclib-2.0-py3-none-any.whl.metadata
+  Using cached geographiclib-2.0-py3-none-any.whl.metadata (1.4 kB)
+Requirement already satisfied: contourpy&gt;=1.0.1 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from matplotlib-&gt;contextily) (1.3.1)
+Requirement already satisfied: cycler&gt;=0.10 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from matplotlib-&gt;contextily) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from matplotlib-&gt;contextily) (4.55.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from matplotlib-&gt;contextily) (1.4.7)
+Requirement already satisfied: numpy&gt;=1.23 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from matplotlib-&gt;contextily) (2.1.3)
+Requirement already satisfied: packaging&gt;=20.0 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from matplotlib-&gt;contextily) (24.2)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from matplotlib-&gt;contextily) (3.2.0)
+Requirement already satisfied: python-dateutil&gt;=2.7 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from matplotlib-&gt;contextily) (2.9.0.post0)
+Requirement already satisfied: click&gt;=3.0 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from mercantile-&gt;contextily) (8.1.7)
+Collecting affine (from rasterio-&gt;contextily)
+  Obtaining dependency information for affine from https://files.pythonhosted.org/packages/0b/f7/85273299ab57117850cc0a936c64151171fac4da49bc6fba0dad984a7c5f/affine-2.4.0-py3-none-any.whl.metadata
+  Using cached affine-2.4.0-py3-none-any.whl.metadata (4.0 kB)
+Requirement already satisfied: attrs in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from rasterio-&gt;contextily) (24.2.0)
+Requirement already satisfied: certifi in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from rasterio-&gt;contextily) (2024.8.30)
+Collecting cligj&gt;=0.5 (from rasterio-&gt;contextily)
+  Obtaining dependency information for cligj&gt;=0.5 from https://files.pythonhosted.org/packages/73/86/43fa9f15c5b9fb6e82620428827cd3c284aa933431405d1bcf5231ae3d3e/cligj-0.7.2-py3-none-any.whl.metadata
+  Using cached cligj-0.7.2-py3-none-any.whl.metadata (5.0 kB)
+Collecting click-plugins (from rasterio-&gt;contextily)
+  Obtaining dependency information for click-plugins from https://files.pythonhosted.org/packages/e9/da/824b92d9942f4e472702488857914bdd50f73021efea15b4cad9aca8ecef/click_plugins-1.1.1-py2.py3-none-any.whl.metadata
+  Using cached click_plugins-1.1.1-py2.py3-none-any.whl.metadata (6.4 kB)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from requests-&gt;contextily) (3.4.0)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from requests-&gt;contextily) (3.10)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from requests-&gt;contextily) (2.2.3)
+Requirement already satisfied: colorama in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from click&gt;=3.0-&gt;mercantile-&gt;contextily) (0.4.6)
+Requirement already satisfied: six&gt;=1.5 in d:\tif\semester 5\proyek sains data\uts\psd\lib\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;contextily) (1.16.0)
+Using cached contextily-1.6.2-py3-none-any.whl (17 kB)
+Using cached geopy-2.4.1-py3-none-any.whl (125 kB)
+Using cached mercantile-1.2.1-py3-none-any.whl (14 kB)
+Downloading rasterio-1.4.3-cp312-cp312-win_amd64.whl (25.4 MB)
+   ---------------------------------------- 0.0/25.4 MB ? eta -:--:--
+   ---------------------------------------- 0.0/25.4 MB 1.4 MB/s eta 0:00:19
+   ---------------------------------------- 0.0/25.4 MB 1.4 MB/s eta 0:00:19
+   ---------------------------------------- 0.1/25.4 MB 409.6 kB/s eta 0:01:02
+   ---------------------------------------- 0.1/25.4 MB 525.1 kB/s eta 0:00:49
+   ---------------------------------------- 0.1/25.4 MB 568.9 kB/s eta 0:00:45
+   ---------------------------------------- 0.2/25.4 MB 692.4 kB/s eta 0:00:37
+   ---------------------------------------- 0.2/25.4 MB 718.0 kB/s eta 0:00:36
+   ---------------------------------------- 0.3/25.4 MB 761.4 kB/s eta 0:00:33
+    --------------------------------------- 0.3/25.4 MB 778.3 kB/s eta 0:00:33
+    --------------------------------------- 0.4/25.4 MB 782.8 kB/s eta 0:00:32
+    --------------------------------------- 0.5/25.4 MB 855.0 kB/s eta 0:00:30
+    --------------------------------------- 0.6/25.4 MB 974.4 kB/s eta 0:00:26
+   - -------------------------------------- 0.7/25.4 MB 1.1 MB/s eta 0:00:23
+   - -------------------------------------- 0.8/25.4 MB 1.2 MB/s eta 0:00:21
+   - -------------------------------------- 0.9/25.4 MB 1.3 MB/s eta 0:00:20
+   - -------------------------------------- 0.9/25.4 MB 1.2 MB/s eta 0:00:20
+   - -------------------------------------- 1.0/25.4 MB 1.2 MB/s eta 0:00:21
+   - -------------------------------------- 1.1/25.4 MB 1.2 MB/s eta 0:00:20
+   - -------------------------------------- 1.2/25.4 MB 1.3 MB/s eta 0:00:18
+   -- ------------------------------------- 1.4/25.4 MB 1.4 MB/s eta 0:00:18
+   -- ------------------------------------- 1.5/25.4 MB 1.5 MB/s eta 0:00:17
+   -- ------------------------------------- 1.7/25.4 MB 1.6 MB/s eta 0:00:16
+   -- ------------------------------------- 1.8/25.4 MB 1.6 MB/s eta 0:00:15
+   --- ------------------------------------ 1.9/25.4 MB 1.6 MB/s eta 0:00:15
+   --- ------------------------------------ 2.0/25.4 MB 1.6 MB/s eta 0:00:15
+   --- ------------------------------------ 2.1/25.4 MB 1.7 MB/s eta 0:00:14
+   --- ------------------------------------ 2.3/25.4 MB 1.7 MB/s eta 0:00:14
+   --- ------------------------------------ 2.4/25.4 MB 1.8 MB/s eta 0:00:13
+   ---- ----------------------------------- 2.5/25.4 MB 1.8 MB/s eta 0:00:13
+   ---- ----------------------------------- 2.7/25.4 MB 1.9 MB/s eta 0:00:13
+   ---- ----------------------------------- 2.8/25.4 MB 1.9 MB/s eta 0:00:12
+   ---- ----------------------------------- 3.0/25.4 MB 1.9 MB/s eta 0:00:12
+   ---- ----------------------------------- 3.1/25.4 MB 1.9 MB/s eta 0:00:12
+   ----- ---------------------------------- 3.3/25.4 MB 2.0 MB/s eta 0:00:12
+   ----- ---------------------------------- 3.4/25.4 MB 2.0 MB/s eta 0:00:11
+   ----- ---------------------------------- 3.6/25.4 MB 2.0 MB/s eta 0:00:11
+   ----- ---------------------------------- 3.7/25.4 MB 2.1 MB/s eta 0:00:11
+   ------ --------------------------------- 3.9/25.4 MB 2.1 MB/s eta 0:00:11
+   ------ --------------------------------- 4.0/25.4 MB 2.1 MB/s eta 0:00:11
+   ------ --------------------------------- 4.2/25.4 MB 2.1 MB/s eta 0:00:10
+   ------ --------------------------------- 4.3/25.4 MB 2.2 MB/s eta 0:00:10
+   ------ --------------------------------- 4.4/25.4 MB 2.2 MB/s eta 0:00:10
+   ------- -------------------------------- 4.6/25.4 MB 2.2 MB/s eta 0:00:10
+   ------- -------------------------------- 4.7/25.4 MB 2.2 MB/s eta 0:00:10
+   ------- -------------------------------- 4.9/25.4 MB 2.2 MB/s eta 0:00:10
+   ------- -------------------------------- 5.1/25.4 MB 2.3 MB/s eta 0:00:10
+   -------- ------------------------------- 5.2/25.4 MB 2.3 MB/s eta 0:00:09
+   -------- ------------------------------- 5.4/25.4 MB 2.3 MB/s eta 0:00:09
+   -------- ------------------------------- 5.6/25.4 MB 2.3 MB/s eta 0:00:09
+   -------- ------------------------------- 5.7/25.4 MB 2.3 MB/s eta 0:00:09
+   --------- ------------------------------ 5.9/25.4 MB 2.3 MB/s eta 0:00:09
+   --------- ------------------------------ 6.0/25.4 MB 2.3 MB/s eta 0:00:09
+   --------- ------------------------------ 6.1/25.4 MB 2.4 MB/s eta 0:00:09
+   --------- ------------------------------ 6.3/25.4 MB 2.4 MB/s eta 0:00:09
+   ---------- ----------------------------- 6.5/25.4 MB 2.4 MB/s eta 0:00:08
+   ---------- ----------------------------- 6.5/25.4 MB 2.4 MB/s eta 0:00:08
+   ---------- ----------------------------- 6.6/25.4 MB 2.4 MB/s eta 0:00:09
+   ---------- ----------------------------- 6.7/25.4 MB 2.4 MB/s eta 0:00:08
+   ---------- ----------------------------- 6.9/25.4 MB 2.4 MB/s eta 0:00:08
+   ----------- ---------------------------- 7.0/25.4 MB 2.4 MB/s eta 0:00:08
+   ----------- ---------------------------- 7.1/25.4 MB 2.4 MB/s eta 0:00:08
+   ----------- ---------------------------- 7.1/25.4 MB 2.4 MB/s eta 0:00:08
+   ----------- ---------------------------- 7.3/25.4 MB 2.4 MB/s eta 0:00:08
+   ----------- ---------------------------- 7.4/25.4 MB 2.4 MB/s eta 0:00:08
+   ----------- ---------------------------- 7.5/25.4 MB 2.4 MB/s eta 0:00:08
+   ------------ --------------------------- 7.7/25.4 MB 2.4 MB/s eta 0:00:08
+   ------------ --------------------------- 7.8/25.4 MB 2.4 MB/s eta 0:00:08
+   ------------ --------------------------- 7.9/25.4 MB 2.4 MB/s eta 0:00:08
+   ------------ --------------------------- 8.1/25.4 MB 2.4 MB/s eta 0:00:08
+   ------------- -------------------------- 8.3/25.4 MB 2.4 MB/s eta 0:00:08
+   ------------- -------------------------- 8.5/25.4 MB 2.4 MB/s eta 0:00:07
+   ------------- -------------------------- 8.7/25.4 MB 2.4 MB/s eta 0:00:07
+   ------------- -------------------------- 8.9/25.4 MB 2.5 MB/s eta 0:00:07
+   -------------- ------------------------- 9.0/25.4 MB 2.5 MB/s eta 0:00:07
+   -------------- ------------------------- 9.2/25.4 MB 2.5 MB/s eta 0:00:07
+   -------------- ------------------------- 9.3/25.4 MB 2.5 MB/s eta 0:00:07
+   -------------- ------------------------- 9.5/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 9.6/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 9.8/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 10.0/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 10.1/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 10.1/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 10.1/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 10.1/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 10.1/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 10.1/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 10.1/25.4 MB 2.5 MB/s eta 0:00:07
+   --------------- ------------------------ 10.1/25.4 MB 2.5 MB/s eta 0:00:07
+   ---------------- ----------------------- 10.2/25.4 MB 2.3 MB/s eta 0:00:07
+   ---------------- ----------------------- 10.7/25.4 MB 2.5 MB/s eta 0:00:06
+   ----------------- ---------------------- 11.4/25.4 MB 2.8 MB/s eta 0:00:06
+   ------------------ --------------------- 11.5/25.4 MB 2.8 MB/s eta 0:00:06
+   ------------------ --------------------- 11.6/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------ --------------------- 11.8/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------ --------------------- 11.9/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------ --------------------- 12.1/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------- -------------------- 12.2/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------- -------------------- 12.4/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------- -------------------- 12.5/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.8 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.7 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.7 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.7 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.7 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.7 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.7 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.7 MB/s eta 0:00:05
+   ------------------- -------------------- 12.6/25.4 MB 2.7 MB/s eta 0:00:05
+   ------------------- -------------------- 12.7/25.4 MB 2.5 MB/s eta 0:00:06
+   -------------------- ------------------- 12.7/25.4 MB 2.4 MB/s eta 0:00:06
+   -------------------- ------------------- 12.8/25.4 MB 2.4 MB/s eta 0:00:06
+   -------------------- ------------------- 12.8/25.4 MB 2.4 MB/s eta 0:00:06
+   -------------------- ------------------- 12.8/25.4 MB 2.4 MB/s eta 0:00:06
+   -------------------- ------------------- 12.8/25.4 MB 2.4 MB/s eta 0:00:06
+   -------------------- ------------------- 12.9/25.4 MB 2.3 MB/s eta 0:00:06
+   -------------------- ------------------- 13.0/25.4 MB 2.3 MB/s eta 0:00:06
+   -------------------- ------------------- 13.1/25.4 MB 2.3 MB/s eta 0:00:06
+   -------------------- ------------------- 13.1/25.4 MB 2.3 MB/s eta 0:00:06
+   -------------------- ------------------- 13.2/25.4 MB 2.3 MB/s eta 0:00:06
+   -------------------- ------------------- 13.3/25.4 MB 2.3 MB/s eta 0:00:06
+   -------------------- ------------------- 13.3/25.4 MB 2.2 MB/s eta 0:00:06
+   --------------------- ------------------ 13.4/25.4 MB 2.2 MB/s eta 0:00:06
+   --------------------- ------------------ 13.4/25.4 MB 2.2 MB/s eta 0:00:06
+   --------------------- ------------------ 13.5/25.4 MB 2.2 MB/s eta 0:00:06
+   --------------------- ------------------ 13.6/25.4 MB 2.2 MB/s eta 0:00:06
+   --------------------- ------------------ 13.8/25.4 MB 2.2 MB/s eta 0:00:06
+   --------------------- ------------------ 13.9/25.4 MB 2.2 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.1/25.4 MB 2.2 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.1/25.4 MB 2.2 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.1/25.4 MB 2.1 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.1/25.4 MB 2.1 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.2/25.4 MB 2.1 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.2/25.4 MB 2.1 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.2/25.4 MB 2.1 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.2/25.4 MB 2.1 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.2/25.4 MB 2.1 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.3/25.4 MB 2.0 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.4/25.4 MB 2.0 MB/s eta 0:00:06
+   ---------------------- ----------------- 14.5/25.4 MB 2.0 MB/s eta 0:00:06
+   ----------------------- ---------------- 14.6/25.4 MB 2.0 MB/s eta 0:00:06
+   ----------------------- ---------------- 14.9/25.4 MB 2.0 MB/s eta 0:00:06
+   ----------------------- ---------------- 15.0/25.4 MB 2.0 MB/s eta 0:00:06
+   ----------------------- ---------------- 15.1/25.4 MB 2.0 MB/s eta 0:00:06
+   ----------------------- ---------------- 15.2/25.4 MB 2.0 MB/s eta 0:00:06
+   ------------------------ --------------- 15.4/25.4 MB 2.0 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.9 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.8 MB/s eta 0:00:06
+   ------------------------ --------------- 15.6/25.4 MB 1.7 MB/s eta 0:00:06
+   ------------------------ --------------- 15.7/25.4 MB 1.7 MB/s eta 0:00:06
+   ------------------------ --------------- 15.7/25.4 MB 1.7 MB/s eta 0:00:06
+   ------------------------ --------------- 15.7/25.4 MB 1.7 MB/s eta 0:00:06
+   ------------------------ --------------- 15.7/25.4 MB 1.7 MB/s eta 0:00:06
+   ------------------------ --------------- 15.7/25.4 MB 1.7 MB/s eta 0:00:06
+   ------------------------ --------------- 15.8/25.4 MB 1.7 MB/s eta 0:00:06
+   ------------------------ --------------- 15.8/25.4 MB 1.7 MB/s eta 0:00:06
+   ------------------------ --------------- 15.9/25.4 MB 1.6 MB/s eta 0:00:06
+   ------------------------ --------------- 15.9/25.4 MB 1.6 MB/s eta 0:00:06
+   ------------------------- -------------- 15.9/25.4 MB 1.6 MB/s eta 0:00:06
+   ------------------------- -------------- 15.9/25.4 MB 1.6 MB/s eta 0:00:06
+   ------------------------- -------------- 15.9/25.4 MB 1.6 MB/s eta 0:00:06
+   ------------------------- -------------- 15.9/25.4 MB 1.6 MB/s eta 0:00:06
+   ------------------------- -------------- 15.9/25.4 MB 1.6 MB/s eta 0:00:06
+   ------------------------- -------------- 16.0/25.4 MB 1.6 MB/s eta 0:00:07
+   ------------------------- -------------- 16.0/25.4 MB 1.6 MB/s eta 0:00:07
+   ------------------------- -------------- 16.0/25.4 MB 1.6 MB/s eta 0:00:07
+   ------------------------- -------------- 16.0/25.4 MB 1.6 MB/s eta 0:00:07
+   ------------------------- -------------- 16.0/25.4 MB 1.6 MB/s eta 0:00:07
+   ------------------------- -------------- 16.0/25.4 MB 1.6 MB/s eta 0:00:07
+   ------------------------- -------------- 16.0/25.4 MB 1.6 MB/s eta 0:00:07
+   ------------------------- -------------- 16.0/25.4 MB 1.5 MB/s eta 0:00:07
+   ------------------------- -------------- 16.0/25.4 MB 1.5 MB/s eta 0:00:07
+   ------------------------- -------------- 16.0/25.4 MB 1.5 MB/s eta 0:00:07
+   ------------------------- -------------- 16.1/25.4 MB 1.5 MB/s eta 0:00:07
+   ------------------------- -------------- 16.1/25.4 MB 1.5 MB/s eta 0:00:07
+   ------------------------- -------------- 16.2/25.4 MB 1.5 MB/s eta 0:00:07
+   ------------------------- -------------- 16.2/25.4 MB 1.5 MB/s eta 0:00:07
+   ------------------------- -------------- 16.3/25.4 MB 1.4 MB/s eta 0:00:07
+   ------------------------- -------------- 16.3/25.4 MB 1.4 MB/s eta 0:00:07
+   ------------------------- -------------- 16.4/25.4 MB 1.4 MB/s eta 0:00:07
+   ------------------------- -------------- 16.5/25.4 MB 1.4 MB/s eta 0:00:07
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dataset">
+<h2>2.2 Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>Data yang digunakan diambil dari <a class="reference external" href="https://jatim.bps.go.id/id">https://jatim.bps.go.id/id</a></p>
+<p>Data yang digunakan adalah data cross section. dengan fiturnya ada 3 meliputi indeks keparahan kemiskinan, indeks kedalaman kemiskinan, dan presentase penduduk miskin.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/Proyek_sains_data/dataFitur.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-88cbc9d4-d45c-4fea-bf18-d2db96309cbe" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nama_Kab/Kota</th>
+      <th>p1</th>
+      <th>p2</th>
+      <th>p0_persen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Pacitan</td>
+      <td>1.49</td>
+      <td>0.25</td>
+      <td>13.08</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Ponorogo</td>
+      <td>1.02</td>
+      <td>0.17</td>
+      <td>9.11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Trenggalek</td>
+      <td>1.43</td>
+      <td>0.28</td>
+      <td>10.50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Tulungagung</td>
+      <td>0.60</td>
+      <td>0.10</td>
+      <td>6.28</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Blitar</td>
+      <td>0.80</td>
+      <td>0.12</td>
+      <td>8.16</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Kediri</td>
+      <td>1.22</td>
+      <td>0.24</td>
+      <td>9.95</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Malang</td>
+      <td>0.98</td>
+      <td>0.16</td>
+      <td>8.98</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lumajang</td>
+      <td>1.23</td>
+      <td>0.26</td>
+      <td>8.65</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Jember</td>
+      <td>1.01</td>
+      <td>0.18</td>
+      <td>9.01</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Banyuwangi</td>
+      <td>0.44</td>
+      <td>0.06</td>
+      <td>6.54</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Bondowoso</td>
+      <td>1.51</td>
+      <td>0.28</td>
+      <td>12.60</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Situbondo</td>
+      <td>1.19</td>
+      <td>0.18</td>
+      <td>11.51</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Probolinggo</td>
+      <td>2.63</td>
+      <td>0.60</td>
+      <td>16.45</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Pasuruan</td>
+      <td>1.09</td>
+      <td>0.21</td>
+      <td>8.63</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Sidoarjo</td>
+      <td>0.64</td>
+      <td>0.18</td>
+      <td>4.53</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Mojokerto</td>
+      <td>1.01</td>
+      <td>0.19</td>
+      <td>9.37</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Jombang</td>
+      <td>0.90</td>
+      <td>0.17</td>
+      <td>8.60</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Nganjuk</td>
+      <td>1.04</td>
+      <td>0.18</td>
+      <td>10.17</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Madiun</td>
+      <td>1.40</td>
+      <td>0.25</td>
+      <td>10.63</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Magetan</td>
+      <td>1.09</td>
+      <td>0.20</td>
+      <td>9.32</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Ngawi</td>
+      <td>2.22</td>
+      <td>0.61</td>
+      <td>13.81</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Bojonegoro</td>
+      <td>1.99</td>
+      <td>0.48</td>
+      <td>11.69</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Tuban</td>
+      <td>1.95</td>
+      <td>0.39</td>
+      <td>14.36</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Lamongan</td>
+      <td>1.88</td>
+      <td>0.44</td>
+      <td>12.16</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Gresik</td>
+      <td>1.58</td>
+      <td>0.33</td>
+      <td>10.32</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Bangkalan</td>
+      <td>2.03</td>
+      <td>0.39</td>
+      <td>18.66</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Sampang</td>
+      <td>2.86</td>
+      <td>0.57</td>
+      <td>20.83</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Pamekasan</td>
+      <td>1.05</td>
+      <td>0.14</td>
+      <td>13.41</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Sumenep</td>
+      <td>4.19</td>
+      <td>1.53</td>
+      <td>17.78</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Kota Kediri</td>
+      <td>1.02</td>
+      <td>0.25</td>
+      <td>6.51</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Kota Blitar</td>
+      <td>1.06</td>
+      <td>0.24</td>
+      <td>6.75</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Kota Malang</td>
+      <td>0.42</td>
+      <td>0.08</td>
+      <td>3.91</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Kota Probolinggo</td>
+      <td>0.98</td>
+      <td>0.21</td>
+      <td>6.18</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Kota Pasuruan</td>
+      <td>0.70</td>
+      <td>0.12</td>
+      <td>6.32</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Kota Mojokerto</td>
+      <td>0.74</td>
+      <td>0.13</td>
+      <td>5.57</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Kota Madiun</td>
+      <td>0.56</td>
+      <td>0.09</td>
+      <td>4.38</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Kota Surabaya</td>
+      <td>0.65</td>
+      <td>0.16</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Kota Batu</td>
+      <td>0.46</td>
+      <td>0.09</td>
+      <td>3.06</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-88cbc9d4-d45c-4fea-bf18-d2db96309cbe')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-88cbc9d4-d45c-4fea-bf18-d2db96309cbe button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-88cbc9d4-d45c-4fea-bf18-d2db96309cbe');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-a0dc27fd-a037-47e4-98df-bbe16108d188">
+  <button class="colab-df-quickchart" onclick="quickchart('df-a0dc27fd-a037-47e4-98df-bbe16108d188')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-a0dc27fd-a037-47e4-98df-bbe16108d188 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_a4db47bf-a8ee-4450-a2d3-9adeb6c78ba3">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('data')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_a4db47bf-a8ee-4450-a2d3-9adeb6c78ba3 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('data');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              p1         p2  p0_persen
+count  38.000000  38.000000  38.000000
+mean    1.291053   0.276579   9.782368
+std     0.760145   0.252536   4.213447
+min     0.420000   0.060000   3.060000
+25%     0.825000   0.160000   6.517500
+50%     1.055000   0.205000   9.215000
+75%     1.505000   0.280000  12.042500
+max     4.190000   1.530000  20.830000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Melihat Dimensi Data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(38, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rangkuman Statistika</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              p1         p2  p0_persen
+count  38.000000  38.000000  38.000000
+mean    1.291053   0.276579   9.782368
+std     0.760145   0.252536   4.213447
+min     0.420000   0.060000   3.060000
+25%     0.825000   0.160000   6.517500
+50%     1.055000   0.205000   9.215000
+75%     1.505000   0.280000  12.042500
+max     4.190000   1.530000  20.830000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Memeriksa missing value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nama_Kab/Kota    0
+p1               0
+p2               0
+p0_persen        0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pengecekan missing value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nama_Kab/Kota    0
+p1               0
+p2               0
+p0_persen        0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="penjelasan-tiap-feature">
+<h2>2.3 penjelasan tiap feature<a class="headerlink" href="#penjelasan-tiap-feature" title="Link to this heading">#</a></h2>
+<section id="indeks-kedalaman-kemiskinan-adalah-poverty-gap-index-p1">
+<h3>1.indeks kedalaman kemiskinan adalah (Poverty Gap Index/P1)<a class="headerlink" href="#indeks-kedalaman-kemiskinan-adalah-poverty-gap-index-p1" title="Link to this heading">#</a></h3>
+<p>Ukuran rata-rata kesenjangan
+pengeluaran masing-masing penduduk miskin
+terhadap garis kemiskinan.
+<br>
+Semakin kecil nilai poverty gap index, semakin
+besar potensi ekonomi untuk dana pengentasan
+kemiskinan berdasarkan identifikasi karakteristik
+penduduk miskin dan juga untuk target sasaran
+bantuan dan program
+<br>
+Penurunan nilai indeks
+Kedalaman Kemiskinan mengindikasikan bahwa
+rata-rata pengeluaran penduduk miskin cenderung
+makin mendekati garis kemiskinan dan ketimpangan
+pengeluaran penduduk miskin juga semakin
+menyempit (BPS, 2018)</p>
+<p>Rumusnya</p>
+<div class="math notranslate nohighlight">
+\[
+P_1 = \frac{1}{n}\sum_{i=1}^{q} \left[ \frac{z - y_i}{z} \right]
+\]</div>
+<p>P1 =Indeks kedalam kemiskinan<br>
+Z =Garis kemiskinan<br>
+Y1 =rata-rata pengeluaran perkapita sebulan
+penduduk yang berasa di bawah garis kemiskinan
+(i=1,2,3,..,q); y1&lt;z<br>
+q =banyaknya penduduk yang berada di
+bawah garis kemiskinan<br>
+n =jumlah penduduk</p>
+</section>
+<section id="indeks-keparahan-kemiskinan">
+<h3>2. indeks keparahan kemiskinan<a class="headerlink" href="#indeks-keparahan-kemiskinan" title="Link to this heading">#</a></h3>
+<p>Indeks yang memberikan informasi mengenai gambaran penyebaran pengeluaran diantara penduduk miskin.
+<br>
+mungkin
+terdapat kasus bahwa beberapa kelompok penduduk
+miskin memiliki insiden kemiskinan yang tinggi
+tetapi jurang kemiskinannya (poverty gap) rendah,
+sementara kelompok penduduk lain mempunyai
+insiden kemiskinan yang rendah tetapi memiliki
+jurang kemiskinan yang tinggi bagi penduduk yang
+miskin.<br>
+Semakin tinggi nilai indeks, semakin tinggi ketimpangan pengeluaran diantara penduduk miskin. <br>
+rumus
+$<span class="math notranslate nohighlight">\(
+P_2 = \frac{1}{n}\sum_{i=1}^{q} \left[ \frac{z - y_i}{z} \right]^2
+\)</span>$</p>
+<p>P2 =Indeks keparahan kemiskinan<br>
+Z =Garis kemiskinan<br>
+Y1 =rata-rata pengeluaran perkapita sebulan
+penduduk yang berasa di bawah garis kemiskinan
+(i=1,2,3,..,q); y1&lt;z<br>
+q =banyaknya penduduk yang berada di
+bawah garis kemiskinan<br>
+n =jumlah penduduk</p>
+</section>
+<section id="presentase-penduduk-miskin">
+<h3>3.Presentase penduduk miskin<a class="headerlink" href="#presentase-penduduk-miskin" title="Link to this heading">#</a></h3>
+<p>Headcount
+Index/P0) adalah Persentase penduduk miskin yang
+berada di bawah garis kemiskinan<br>
+Persentase
+penduduk miskin yang tinggi menunjukkan bahwa
+tingkat kemiskinan di suatu wilayah juga tinggi<br>
+rumusnya</p>
+<div class="math notranslate nohighlight">
+\[
+P_0 = \frac{1}{n}\sum_{i=1}^{q} \left[ \frac{z - y_i}{z} \right]^0
+\]</div>
+<p>P0 =Presentase penduduk miskin<br>
+Z =Garis kemiskinan<br>
+Y1 =rata-rata pengeluaran perkapita sebulan
+penduduk yang berasa di bawah garis kemiskinan
+(i=1,2,3,..,q); y1&lt;z<br>
+q =banyaknya penduduk yang berada di
+bawah garis kemiskinan<br>
+n =jumlah penduduk</p>
+</section>
+</section>
+<section id="korelasi-antar-variabel">
+<h2>2.4 Korelasi antar variabel<a class="headerlink" href="#korelasi-antar-variabel" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Korelasi antar variabel</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;p1&#39;</span><span class="p">,</span> <span class="s1">&#39;p2&#39;</span><span class="p">,</span> <span class="s1">&#39;p0_persen&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 p1        p2  p0_persen
+p1         1.000000  0.942327   0.864401
+p2         0.942327  1.000000   0.675643
+p0_persen  0.864401  0.675643   1.000000
+</pre></div>
+</div>
+</div>
+</div>
+<P>Korelasi antara p1 dan p2 0.92327 yang berarti sangat tinggi</P>
+<p>Nilai korelasi antara p1 dan p0_persen adalah 0.864 yang berarti tingi dan positif</p>
+<p>Nilai korelasi antara p2 dan p0_persen adalah 0.676 yang berarti cukup kuat walaupun tidak sekuat hubungan p1 dan dan p2</P>
+<center><b>Panduan Interpretasi Nilai Korelasi:</b></center>
+<br>
+<b>0.00 hingga ±0.19:</b>
+Korelasi sangat rendah atau lemah. Hampir tidak ada hubungan antara dua variabel.
+<p><b>0.20 hingga ±0.39:</b>
+Korelasi rendah atau hubungan cukup lemah. Ada hubungan, tetapi tidak kuat.</p>
+<p><b>0.40 hingga ±0.59:</b>
+Korelasi sedang. Ada hubungan yang cukup berarti, tetapi tidak terlalu kuat.</p>
+<p><b>0.60 hingga ±0.79:</b>
+Korelasi kuat. Ada hubungan yang jelas antara kedua variabel, tetapi tidak sempurna.</p>
+<p><b>0.80 hingga ±1.00:</b>
+Korelasi sangat kuat. Hubungan antara dua variabel sangat jelas, mendekati sempurna.</p>
+</section>
+<section id="visualisasi-data">
+<h2>2.5. Visualisasi Data<a class="headerlink" href="#visualisasi-data" title="Link to this heading">#</a></h2>
+<section id="a-persebaran-nilai-p1">
+<h3>a. Persebaran nilai P1<a class="headerlink" href="#a-persebaran-nilai-p1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import library for plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create scatter plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nama_Kab/Kota&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;p1&#39;</span><span class="p">])</span>
+
+<span class="c1"># Set labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Nama Kabupaten/Kota&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Nilai p1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Persebaran Nilai p1 pada Setiap Kabupaten/Kota&#39;</span><span class="p">)</span>
+
+<span class="c1"># Rotate x-axis labels for better readability (optional)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/87eafb191982454b11dd41ebc47d85ce6fcb7cbebd598d77fefea2638343d73e.png" src="_images/87eafb191982454b11dd41ebc47d85ce6fcb7cbebd598d77fefea2638343d73e.png" />
+</div>
+</div>
+<p>Dari data tersebut dapat dilihat bahwa kabupaten sumenep memiliki indeks kedalaman kemiskinan tertinggi sedangkan kota malang dan kabupaten, kota batu memiliki indeks kemiskinan terendah</p>
+</section>
+<section id="b-persebaran-nilai-p2">
+<h3>b. Persebaran Nilai p2<a class="headerlink" href="#b-persebaran-nilai-p2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create scatter plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nama_Kab/Kota&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;p2&#39;</span><span class="p">])</span>
+
+<span class="c1"># Set labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Nama Kabupaten/Kota&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Nilai p2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Persebaran Nilai p2 pada Setiap Kabupaten/Kota&#39;</span><span class="p">)</span>
+
+<span class="c1"># Rotate x-axis labels for better readability (optional)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8e3d37ef2fa924df1dc0f105ec867b0cf5128952b0b7c8d3c38e50b606a9eff3.png" src="_images/8e3d37ef2fa924df1dc0f105ec867b0cf5128952b0b7c8d3c38e50b606a9eff3.png" />
+</div>
+</div>
+<p>Dari data terlihaata bahwa kabupaten sumenep memiliki keparahan kemiskinan tertinggi dan jauh dari rata rata sedangkan kabupaten banyuwangi terendah</p>
+</section>
+<section id="c-persebaran-nilai-presentase-penduduk-miskin">
+<h3>c. Persebaran Nilai Presentase penduduk miskin<a class="headerlink" href="#c-persebaran-nilai-presentase-penduduk-miskin" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create scatter plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nama_Kab/Kota&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;p0_persen&#39;</span><span class="p">])</span>
+
+<span class="c1"># Set labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Nama Kabupaten/Kota&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Nilai p0_persen&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Persebaran Nilai presentase penduduk miskin (persen) pada Setiap Kabupaten/Kota&#39;</span><span class="p">)</span>
+
+<span class="c1"># Rotate x-axis labels for better readability (optional)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07cbe6945ddd5a0711ace79224fe126789913002383063738cdfed2d7e8bf699.png" src="_images/07cbe6945ddd5a0711ace79224fe126789913002383063738cdfed2d7e8bf699.png" />
+</div>
+</div>
+<p>Dari data tersebut bisa kita lihat bahwa Sumenep masih masuk presentase kemiskinan tertinggi tetapi nilainya masih dalam rata seperti daerah lain sedangkan kota batu memiliki presentase kemiskinan terendah</p>
+</section>
+</section>
+</section>
+<section id="preprocessing">
+<h1>3. Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h1>
+<section id="normalisasi-standarisasi">
+<h2>3.1 Normalisasi/Standarisasi<a class="headerlink" href="#normalisasi-standarisasi" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;p1&#39;</span><span class="p">,</span> <span class="s1">&#39;p2&#39;</span><span class="p">,</span> <span class="s1">&#39;p0_persen&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standarisasi data menggunakan standarisasi Z-score (StandardScaler)</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_scaled</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.26523612, -0.10666091,  0.79315033],
+       [-0.36136667, -0.4276997 , -0.16171887],
+       [ 0.18524428,  0.01372863,  0.17260561],
+       [-0.9213096 , -0.70860864, -0.84239389],
+       [-0.65467011, -0.62834894, -0.39021401],
+       [-0.09472719, -0.14679076,  0.04031895],
+       [-0.41469457, -0.46782955, -0.19298662],
+       [-0.08139521, -0.06653106, -0.27235862],
+       [-0.37469865, -0.38756985, -0.18577099],
+       [-1.13462119, -0.86912803, -0.77985837],
+       [ 0.29190007,  0.01372863,  0.67770015],
+       [-0.13472311, -0.38756985,  0.41553204],
+       [ 1.7850812 ,  1.29788378,  1.60370681],
+       [-0.26804285, -0.26718031, -0.27716905],
+       [-0.8679817 , -0.38756985, -1.263306  ],
+       [-0.37469865, -0.34744   , -0.09918335],
+       [-0.52135037, -0.4276997 , -0.28438468],
+       [-0.33470272, -0.38756985,  0.09323362],
+       [ 0.14524835, -0.10666091,  0.20387337],
+       [-0.26804285, -0.30731015, -0.11120941],
+       [ 1.23847025,  1.33801363,  0.96873082],
+       [ 0.93183484,  0.8163256 ,  0.45882585],
+       [ 0.87850694,  0.45515696,  1.10101748],
+       [ 0.78518312,  0.65580621,  0.57187082],
+       [ 0.38522389,  0.21437787,  0.1293118 ],
+       [ 0.98516274,  0.45515696,  2.13525868],
+       [ 2.09171661,  1.17749424,  2.6571897 ],
+       [-0.32137075, -0.54808925,  0.87252233],
+       [ 3.8648692 ,  5.02995968,  1.92360002],
+       [-0.36136667, -0.10666091, -0.78707401],
+       [-0.30803878, -0.14679076, -0.72934892],
+       [-1.16128513, -0.78886834, -1.41242915],
+       [-0.41469457, -0.26718031, -0.86644601],
+       [-0.78798985, -0.62834894, -0.83277304],
+       [-0.73466196, -0.58821909, -1.01316395],
+       [-0.97463749, -0.74873849, -1.29938418],
+       [-0.85464972, -0.46782955, -1.40040309],
+       [-1.10795724, -0.74873849, -1.61687218]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="modelling-clustering">
+<h1>4. Modelling/<strong>clustering</strong><a class="headerlink" href="#modelling-clustering" title="Link to this heading">#</a></h1>
+<section id="menentukan-jumlah-kluster-optimal-dengan-elbow-method">
+<h2>4.1 Menentukan jumlah kluster optimal dengan elbow method<a class="headerlink" href="#menentukan-jumlah-kluster-optimal-dengan-elbow-method" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menentukan jumlah kluster menggunakan metode Elbow</span>
+<span class="n">inertia</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">K_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K_range</span><span class="p">:</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+    <span class="n">inertia</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">, Inertia = </span><span class="si">{</span><span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi Elbow</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K_range</span><span class="p">,</span> <span class="n">inertia</span><span class="p">,</span> <span class="s1">&#39;bo-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Kluster (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Inertia&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Metode Elbow untuk Menentukan K Optimal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>K = 1, Inertia = 114.0
+K = 2, Inertia = 48.41614615597604
+K = 3, Inertia = 33.26675425573549
+K = 4, Inertia = 16.31856827207257
+K = 5, Inertia = 9.952515053395336
+K = 6, Inertia = 8.628918162267343
+K = 7, Inertia = 6.473218399892962
+K = 8, Inertia = 5.826384904720022
+K = 9, Inertia = 4.266983413774368
+</pre></div>
+</div>
+<img alt="_images/49e7e2800527b229128d08a17525ca2e0d15a607953ee04839f3c8389c0aebfc.png" src="_images/49e7e2800527b229128d08a17525ca2e0d15a607953ee04839f3c8389c0aebfc.png" />
+</div>
+</div>
+<p>Dari data tersebut terlihat data/ nilai inersia mulai stabil ketika sudah mendekati jumlah kluster 3. maka kluster yang dipakai adalah 3</p>
+</section>
+<section id="clustering-dengan-kmeans-k-3">
+<h2>4.2 clustering dengan Kmeans (K=3)<a class="headerlink" href="#clustering-dengan-kmeans-k-3" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Melakukan clustering dengan K yang telah ditentukan (misalnya 3)</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Kluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-1bbda1dc-1cc0-45d5-b370-fdfe4f4a179c" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nama_Kab/Kota</th>
+      <th>p1</th>
+      <th>p2</th>
+      <th>p0_persen</th>
+      <th>Kluster</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Pacitan</td>
+      <td>1.49</td>
+      <td>0.25</td>
+      <td>13.08</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Ponorogo</td>
+      <td>1.02</td>
+      <td>0.17</td>
+      <td>9.11</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Trenggalek</td>
+      <td>1.43</td>
+      <td>0.28</td>
+      <td>10.50</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Tulungagung</td>
+      <td>0.60</td>
+      <td>0.10</td>
+      <td>6.28</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Blitar</td>
+      <td>0.80</td>
+      <td>0.12</td>
+      <td>8.16</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Kediri</td>
+      <td>1.22</td>
+      <td>0.24</td>
+      <td>9.95</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Malang</td>
+      <td>0.98</td>
+      <td>0.16</td>
+      <td>8.98</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lumajang</td>
+      <td>1.23</td>
+      <td>0.26</td>
+      <td>8.65</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Jember</td>
+      <td>1.01</td>
+      <td>0.18</td>
+      <td>9.01</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Banyuwangi</td>
+      <td>0.44</td>
+      <td>0.06</td>
+      <td>6.54</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Bondowoso</td>
+      <td>1.51</td>
+      <td>0.28</td>
+      <td>12.60</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Situbondo</td>
+      <td>1.19</td>
+      <td>0.18</td>
+      <td>11.51</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Probolinggo</td>
+      <td>2.63</td>
+      <td>0.60</td>
+      <td>16.45</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Pasuruan</td>
+      <td>1.09</td>
+      <td>0.21</td>
+      <td>8.63</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Sidoarjo</td>
+      <td>0.64</td>
+      <td>0.18</td>
+      <td>4.53</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Mojokerto</td>
+      <td>1.01</td>
+      <td>0.19</td>
+      <td>9.37</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Jombang</td>
+      <td>0.90</td>
+      <td>0.17</td>
+      <td>8.60</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Nganjuk</td>
+      <td>1.04</td>
+      <td>0.18</td>
+      <td>10.17</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Madiun</td>
+      <td>1.40</td>
+      <td>0.25</td>
+      <td>10.63</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Magetan</td>
+      <td>1.09</td>
+      <td>0.20</td>
+      <td>9.32</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Ngawi</td>
+      <td>2.22</td>
+      <td>0.61</td>
+      <td>13.81</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Bojonegoro</td>
+      <td>1.99</td>
+      <td>0.48</td>
+      <td>11.69</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Tuban</td>
+      <td>1.95</td>
+      <td>0.39</td>
+      <td>14.36</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Lamongan</td>
+      <td>1.88</td>
+      <td>0.44</td>
+      <td>12.16</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Gresik</td>
+      <td>1.58</td>
+      <td>0.33</td>
+      <td>10.32</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Bangkalan</td>
+      <td>2.03</td>
+      <td>0.39</td>
+      <td>18.66</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Sampang</td>
+      <td>2.86</td>
+      <td>0.57</td>
+      <td>20.83</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Pamekasan</td>
+      <td>1.05</td>
+      <td>0.14</td>
+      <td>13.41</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Sumenep</td>
+      <td>4.19</td>
+      <td>1.53</td>
+      <td>17.78</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Kota Kediri</td>
+      <td>1.02</td>
+      <td>0.25</td>
+      <td>6.51</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Kota Blitar</td>
+      <td>1.06</td>
+      <td>0.24</td>
+      <td>6.75</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Kota Malang</td>
+      <td>0.42</td>
+      <td>0.08</td>
+      <td>3.91</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Kota Probolinggo</td>
+      <td>0.98</td>
+      <td>0.21</td>
+      <td>6.18</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Kota Pasuruan</td>
+      <td>0.70</td>
+      <td>0.12</td>
+      <td>6.32</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Kota Mojokerto</td>
+      <td>0.74</td>
+      <td>0.13</td>
+      <td>5.57</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Kota Madiun</td>
+      <td>0.56</td>
+      <td>0.09</td>
+      <td>4.38</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Kota Surabaya</td>
+      <td>0.65</td>
+      <td>0.16</td>
+      <td>3.96</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Kota Batu</td>
+      <td>0.46</td>
+      <td>0.09</td>
+      <td>3.06</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-1bbda1dc-1cc0-45d5-b370-fdfe4f4a179c')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-1bbda1dc-1cc0-45d5-b370-fdfe4f4a179c button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-1bbda1dc-1cc0-45d5-b370-fdfe4f4a179c');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-c2f67501-8cdb-44ba-b675-4e6c71f7bb7f">
+  <button class="colab-df-quickchart" onclick="quickchart('df-c2f67501-8cdb-44ba-b675-4e6c71f7bb7f')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-c2f67501-8cdb-44ba-b675-4e6c71f7bb7f button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_13ab93e3-a6ba-4af5-8db2-4032a41e6605">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('data')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_13ab93e3-a6ba-4af5-8db2-4032a41e6605 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('data');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+<section id="nilai-akurasi">
+<h1>5. Nilai Akurasi<a class="headerlink" href="#nilai-akurasi" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span>
+
+<span class="c1"># Assuming &#39;data&#39; is your DataFrame and &#39;Kluster&#39; is the column with cluster assignments</span>
+<span class="c1"># and &#39;p1&#39;, &#39;p2&#39;, &#39;p0_persen&#39; are the features used for clustering</span>
+
+<span class="c1"># Extract features and cluster labels</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;p1&#39;</span><span class="p">,</span> <span class="s1">&#39;p2&#39;</span><span class="p">,</span> <span class="s1">&#39;p0_persen&#39;</span><span class="p">]]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Kluster&#39;</span><span class="p">]</span>
+
+<span class="c1"># Calculate the silhouette score</span>
+<span class="n">silhouette_avg</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+<span class="c1"># Print the silhouette score</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Silhouette Score: </span><span class="si">{</span><span class="n">silhouette_avg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Silhouette Score: 0.42478969989357546
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nilai 0.42 adalah cukup baik, namun masih bisa ditingkatkan.
+Ini menunjukkan bahwa sebagian besar objek memiliki cluster yang sesuai</p>
+</section>
+<section id="visualisasi-cluster">
+<h1>6. Visualisasi cluster<a class="headerlink" href="#visualisasi-cluster" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualisasi hasil clustering</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Scatter plot untuk dua fitur pertama (P1 vs P2)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;p1&#39;</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;p2&#39;</span><span class="p">],</span>
+    <span class="n">hue</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Kluster&#39;</span><span class="p">],</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">)</span>
+
+<span class="c1"># Menambahkan centroids</span>
+<span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># Centroids untuk P1 dan P2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">centroids</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">centroids</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Centroids&#39;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7ed81e441ff0&gt;
+</pre></div>
+</div>
+<img alt="_images/f242135df7a35056a5c260cbb4c91888c7d381f9e43f67b5b6c4f8d5b7b18b94.png" src="_images/f242135df7a35056a5c260cbb4c91888c7d381f9e43f67b5b6c4f8d5b7b18b94.png" />
+</div>
+</div>
+</section>
+<section id="kesimpulan">
+<h1>7. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group data by cluster and calculate the mean of &#39;p1&#39;, &#39;p2&#39;, and &#39;p3&#39;</span>
+<span class="n">cluster_means</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Kluster&#39;</span><span class="p">)[[</span><span class="s1">&#39;p1&#39;</span><span class="p">,</span> <span class="s1">&#39;p2&#39;</span><span class="p">,</span> <span class="s1">&#39;p0_persen&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">cluster_means</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-03a41b27-e12d-4045-a9b9-f02571f0c332" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>p1</th>
+      <th>p2</th>
+      <th>p0_persen</th>
+    </tr>
+    <tr>
+      <th>Kluster</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.781667</td>
+      <td>0.151111</td>
+      <td>6.471111</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.786000</td>
+      <td>0.740000</td>
+      <td>17.506000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.404000</td>
+      <td>0.272667</td>
+      <td>11.181333</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-03a41b27-e12d-4045-a9b9-f02571f0c332')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-03a41b27-e12d-4045-a9b9-f02571f0c332 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-03a41b27-e12d-4045-a9b9-f02571f0c332');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-3e552fa6-df18-4c0b-9da9-c82d3761fe76">
+  <button class="colab-df-quickchart" onclick="quickchart('df-3e552fa6-df18-4c0b-9da9-c82d3761fe76')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-3e552fa6-df18-4c0b-9da9-c82d3761fe76 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_004541f2-f9e5-4665-bb3c-1246995cab93">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('cluster_means')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_004541f2-f9e5-4665-bb3c-1246995cab93 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('cluster_means');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<p>Kesimpulann berdasarkan nilai rata rata : <br></p>
+<p>kluster 0 dengan rata rata nilai nya paling kecil maka ini masuk sebagai kategori wilayah cluster kemiskinan yang rendah <br></p>
+<p>kluster 1 dengan nilai rata rata nilai p1,p2,p0Persen tertinggi dapat disimpulkan bahwa daerah yang masuk kluster ini memiliki tingkat kemiskinan tertinggi <br></p>
+<p>Kluster 2 dengan nilai sedang sehingga dapat disimpulkan daerah/kota dalam kluster ini memiliki tingkat kemiskinan sedang</p>
+</section>
+<section id="deployment-hugging-face">
+<h1>8. Deployment hugging face<a class="headerlink" href="#deployment-hugging-face" title="Link to this heading">#</a></h1>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="laporanPSD.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Wahyu Rohmatul Abidin</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="psd2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Prediksi Harga barang merah daerah sumenep</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Implementasi K-Means dalam Pengelompokan Penyebaran Kemiskinan di Indonesia untuk Pengendalian dan Pemulihan Ekonomi di Daerah Jawa Timur</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bussiness-understanding">1. Bussiness Understanding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masalah">1.2 Masalah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.3 Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">1.4 Manfaat</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">2. EDA</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">2.1 Import Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2.2 Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-tiap-feature">2.3 penjelasan tiap feature</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indeks-kedalaman-kemiskinan-adalah-poverty-gap-index-p1">1.indeks kedalaman kemiskinan adalah (Poverty Gap Index/P1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indeks-keparahan-kemiskinan">2. indeks keparahan kemiskinan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presentase-penduduk-miskin">3.Presentase penduduk miskin</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-variabel">2.4 Korelasi antar variabel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">2.5. Visualisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-persebaran-nilai-p1">a. Persebaran nilai P1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-persebaran-nilai-p2">b. Persebaran Nilai p2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-persebaran-nilai-presentase-penduduk-miskin">c. Persebaran Nilai Presentase penduduk miskin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">3. Preprocessing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-standarisasi">3.1 Normalisasi/Standarisasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-clustering">4. Modelling/<strong>clustering</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-jumlah-kluster-optimal-dengan-elbow-method">4.1 Menentukan jumlah kluster optimal dengan elbow method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-dengan-kmeans-k-3">4.2 clustering dengan Kmeans (K=3)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nilai-akurasi">5. Nilai Akurasi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-cluster">6. Visualisasi cluster</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-hugging-face">8. Deployment hugging face</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wahyu Rohmatul Abidin
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
